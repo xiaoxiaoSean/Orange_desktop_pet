@@ -204,7 +204,7 @@ namespace 橘子桌面宠物
             this.TopMost = true;
             this.Size = new Size(Screen.PrimaryScreen.Bounds.Width/4, Screen.PrimaryScreen.Bounds.Height/4);
             this.Location=new Point(Screen.PrimaryScreen.Bounds.Width-this.Size.Width,Screen.PrimaryScreen.Bounds.Height*74/100);
-            mainPictureBox1.Load(Application.StartupPath + "\\image\\normal1.png");
+            mainPictureBox1.Load(Application.StartupPath + "\\image\\start1.png");
             this.TransparencyKey = this.BackColor;
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
@@ -226,40 +226,12 @@ namespace 橘子桌面宠物
             {
 
             }*/
+            mainPictureBox1.Load(Application.StartupPath + "\\image\\normal1.png");
             //初始化txt
             File.WriteAllText(Application.StartupPath + "\\data\\cache\\isThinking.txt", "0");
             File.WriteAllText(Application.StartupPath + "\\data\\cache\\isAskFormShow.txt", "0");
-            //Consume_power();
-            ppt.Application pptapp = null;//检测ppt是否打开
-            int pptTipTimes = 0;
             do
             {
-                try//这里利用了两个异常的不同
-                {
-                    pptapp = (Microsoft.Office.Interop.PowerPoint.Application)System.Runtime.InteropServices.Marshal.GetActiveObject("PowerPoint.Application");                    
-                }
-                catch (System.Runtime.InteropServices.COMException)
-                {
-                    pptTipTimes = 0;//ppt没打开
-                }
-                catch (System.InvalidCastException)
-                {
-                    //ppt打开
-                    if (pptTipTimes==0)
-                    {
-                        File.WriteAllText(Application.StartupPath + "\\data\\cache\\show1.txt", "你似乎打开了powerpoint，有什么问题可以单击Tom以获得帮助");
-                        show1 show1_show = new show1();
-                        show1_show.Show();
-                        MoveTo(new Point(Screen.PrimaryScreen.Bounds.Width - this.Size.Width, Screen.PrimaryScreen.Bounds.Height * 74 / 100 - Screen.PrimaryScreen.Bounds.Height * 20 / 100));
-                        MoveTo(new Point(Screen.PrimaryScreen.Bounds.Width - this.Size.Width, Screen.PrimaryScreen.Bounds.Height * 74 / 100));
-                        MoveTo(new Point(Screen.PrimaryScreen.Bounds.Width - this.Size.Width, Screen.PrimaryScreen.Bounds.Height * 74 / 100 - Screen.PrimaryScreen.Bounds.Height * 10 / 100));
-                        MoveTo(new Point(Screen.PrimaryScreen.Bounds.Width - this.Size.Width, Screen.PrimaryScreen.Bounds.Height * 74 / 100));
-                        MoveTo(new Point(Screen.PrimaryScreen.Bounds.Width - this.Size.Width, Screen.PrimaryScreen.Bounds.Height * 74 / 100 - Screen.PrimaryScreen.Bounds.Height * 5 / 100));
-                        MoveTo(new Point(Screen.PrimaryScreen.Bounds.Width - this.Size.Width, Screen.PrimaryScreen.Bounds.Height * 74 / 100));
-                        pptTipTimes++;
-                    }
-
-                }
                 if (File.ReadAllText(Application.StartupPath + "\\data\\cache\\isAskFormShow.txt")=="0")
                 {
                     /* do

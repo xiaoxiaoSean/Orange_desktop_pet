@@ -1,1 +1,2 @@
 README 还在写呢，先别看了
+编译好之后，请把bin/Debug/image这个文件夹放在与编译好的exe同一文件夹内

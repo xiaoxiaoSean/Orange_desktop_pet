@@ -37,3 +37,5 @@ C:\Users\74961\source\repos\1\橘子桌面宠物\bin\Debug\Newtonsoft.Json.xml
 C:\Users\74961\source\repos\1\橘子桌面宠物\obj\Debug\橘子桌面宠物.AnswerForm1.resources
 C:\Users\74961\source\repos\1\橘子桌面宠物\obj\Debug\橘子桌面宠物.AskForm1.resources
 C:\Users\74961\source\repos\1\橘子桌面宠物\obj\Debug\橘子桌面宠物.csproj.ResolveComReference.cache
+C:\Users\74961\source\repos\1\橘子桌面宠物\bin\Debug\System.IO.Pipelines.dll
+C:\Users\74961\source\repos\1\橘子桌面宠物\bin\Debug\System.IO.Pipelines.xml

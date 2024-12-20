@@ -27,7 +27,8 @@ namespace 橘子桌面宠物
         {
             this.Size = new Size(Screen.PrimaryScreen.Bounds.Width / 7, Screen.PrimaryScreen.Bounds.Height / 7);
             this.Location = new Point(Screen.PrimaryScreen.Bounds.Width - this.Size.Width, Screen.PrimaryScreen.Bounds.Height * 60 / 100);
-
+            this.TopMost = true;
+            this.ShowInTaskbar = false;
         }
         private async void askButton1_Click(object sender, EventArgs e)
         {

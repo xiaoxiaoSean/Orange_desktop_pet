@@ -256,6 +256,7 @@ namespace 橘子桌面宠物
                         await Task.Delay(10);
                     } while (this.Location == mouseLocation);*/
                     this.Size = new Size(Screen.PrimaryScreen.Bounds.Width / 4, Screen.PrimaryScreen.Bounds.Height / 4);
+                    this.Location = new Point(Screen.PrimaryScreen.Bounds.Width - this.Size.Width, Screen.PrimaryScreen.Bounds.Height * 74 / 100);
                 }
                 else
                 {

@@ -42,7 +42,7 @@ namespace 橘子桌面宠物.Properties
         {
             get
             {
-                if ((resourceMan == null))
+                if (resourceMan is null)
                 {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("橘子桌面宠物.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;

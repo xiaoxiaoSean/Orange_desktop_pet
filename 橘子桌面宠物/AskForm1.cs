@@ -1,144 +1,138 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
+﻿using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System.Net.Http;
-using System.Net;
-namespace 橘子桌面宠物
-{
-    //kimi写了自己的api调用方式
-   
-    public partial class AskForm1 : Form
-    {
-        public AskForm1()
-        {
-            InitializeComponent();
-        }
-        private void AskForm1_Load(object sender, EventArgs e)
-        {
-            this.Size = new Size(Screen.PrimaryScreen.Bounds.Width / 7, Screen.PrimaryScreen.Bounds.Height / 7);
-            this.Location = new Point(Screen.PrimaryScreen.Bounds.Width - this.Size.Width, Screen.PrimaryScreen.Bounds.Height * 60 / 100);
-            this.TopMost = true;
-            this.ShowInTaskbar = false;
-        }
-        private async void askButton1_Click(object sender, EventArgs e)
-        {
-            await Task.Run(() => askAI());
-        }
-        async void askAI()
-        {
-            WebClient client = new WebClient();
-            WriteisThinkingtxt(true);
-            /*string url = "http://www.kufengai.cn/asset/model/qwens-72b.php?prompt=" + askBox1.Text;
-            string html = client.DownloadString(url);
-            HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
-            doc.LoadHtml(html);
-            string jsonText = doc.DocumentNode.InnerText;
-            JObject json = JObject.Parse(jsonText);
-            WriteisThinkingtxt(false);
-            string text = json["text"].ToString().Substring(0, json["text"].ToString().Count() - 24);*///旧代码，api已失效
-            try
-            {
-                var kimiApi = new KimiApi("sk-bGRGiYYyX9RxmZbWvvarfj8N2UNDgpiN91mYLV8pSUD35sLP", "https://api.moonshot.cn/v1/chat/completions");//请不要滥用token
-                MessageBox.Show(await kimiApi.ChatAI(askBox1.Text));
-                WriteisThinkingtxt(false);
-            }
-            catch (Exception)
-            {
-                WriteisThinkingtxt(false);
 
-            }
-        }
-        void WriteisThinkingtxt(bool isThinking)
+namespace 橘子桌面宠物;
+
+//kimi写了自己的api调用方式
+
+public partial class AskForm1 : Form
+{
+    public AskForm1()
+    {
+        InitializeComponent();
+    }
+
+    private void AskForm1_Load(object sender, EventArgs e)
+    {
+        Size = new(Screen.PrimaryScreen.Bounds.Width / 7, Screen.PrimaryScreen.Bounds.Height / 7);
+        Location = new(Screen.PrimaryScreen.Bounds.Width - Size.Width, Screen.PrimaryScreen.Bounds.Height * 60 / 100);
+        TopMost = true;
+        ShowInTaskbar = false;
+    }
+
+    private async void askButton1_Click(object sender, EventArgs e)
+    {
+        await askAI();
+    }
+
+    private async Task askAI()
+    {
+        //WebClient client = new WebClient();
+        WriteisThinkingtxt(true);
+        /*string url = "http://www.kufengai.cn/asset/model/qwens-72b.php?prompt=" + askBox1.Text;
+        string html = client.DownloadString(url);
+        HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
+        doc.LoadHtml(html);
+        string jsonText = doc.DocumentNode.InnerText;
+        JObject json = JObject.Parse(jsonText);
+        WriteisThinkingtxt(false);
+        string text = json["text"].ToString().Substring(0, json["text"].ToString().Count() - 24);*/ //旧代码，api已失效
+        try
         {
-            w:
-            try
-            {
-                if (isThinking==true)
-                {
-                    File.WriteAllText(Application.StartupPath + "\\data\\cache\\isThinking.txt", "1");
-                }
-                else
-                {
-                    File.WriteAllText(Application.StartupPath + "\\data\\cache\\isThinking.txt", "0");
-                }
-            }
-            catch (Exception)
-            {
-                goto w;
-            }
+            KimiApi kimiApi = new("sk-bGRGiYYyX9RxmZbWvvarfj8N2UNDgpiN91mYLV8pSUD35sLP", "https://api.moonshot.cn/v1/chat/completions"); //请不要滥用token
+            MessageBox.Show(await kimiApi.ChatAI(askBox1.Text));
+            WriteisThinkingtxt(false);
+        }
+        catch (Exception)
+        {
+            WriteisThinkingtxt(false);
         }
     }
-    public class KimiApi//本class的作者为kimi ai
+
+    private void WriteisThinkingtxt(bool isThinking)
     {
-        private string _apiKey;
-        private string _apiUrl;
-
-        public KimiApi(string apiKey, string apiUrl)
+    w:
+        try
         {
-            _apiKey = apiKey;
-            _apiUrl = apiUrl;
-        }
-
-        public async Task<string> ChatAI(string input)
-        {
-            var requestBody = new
+            if (isThinking)
             {
-                model = "moonshot-v1-8k", // 模型ID，根据实际情况替换
-                messages = new[]
-                {
+                File.WriteAllText(Application.StartupPath + "\\data\\cache\\isThinking.txt", "1");
+            }
+            else
+            {
+                File.WriteAllText(Application.StartupPath + "\\data\\cache\\isThinking.txt", "0");
+            }
+        }
+        catch (Exception)
+        {
+            goto w;
+        }
+    }
+}
+
+public class KimiApi //本class的作者为kimi ai
+{
+    private readonly string _apiKey;
+    private readonly string _apiUrl;
+
+    public KimiApi(string apiKey, string apiUrl)
+    {
+        _apiKey = apiKey;
+        _apiUrl = apiUrl;
+    }
+
+    public async Task<string> ChatAI(string input)
+    {
+        var requestBody = new
+        {
+            model = "moonshot-v1-8k", // 模型ID，根据实际情况替换
+            messages = new[]
+            {
                 new { role = "system", content = "你是一个AI助手" },
                 new { role = "user", content = input }
             },
-                stream = true
-            };
+            stream = true
+        };
 
-            var json = JsonConvert.SerializeObject(requestBody);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var request = new HttpRequestMessage
-            {
-                Method = HttpMethod.Post,
-                RequestUri = new Uri(_apiUrl),
-                Content = content
-            };
-            request.Headers.Add("Authorization", $"Bearer {_apiKey}");
+        string json = JsonConvert.SerializeObject(requestBody);
+        StringContent content = new(json, Encoding.UTF8, "application/json");
+        HttpRequestMessage request = new()
+        {
+            Method = HttpMethod.Post,
+            RequestUri = new(_apiUrl),
+            Content = content
+        };
+        request.Headers.Add("Authorization", $"Bearer {_apiKey}");
 
-            using (var client = new HttpClient())
+        using HttpClient client = new();
+        HttpResponseMessage response = await client.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
+        StringBuilder fullResponse = new();
+        using (Stream stream = await response.Content.ReadAsStreamAsync())
+        using (StreamReader reader = new(stream))
+        {
+            while (!reader.EndOfStream)
             {
-                var response = await client.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
-                var fullResponse = new StringBuilder();
-                using (var stream = await response.Content.ReadAsStreamAsync())
-                using (var reader = new System.IO.StreamReader(stream))
+                string line = await reader.ReadLineAsync();
+                if (line.StartsWith("data:"))
                 {
-                    while (!reader.EndOfStream)
+                    string jsonString = line.Substring(5).Trim();
+                    if (jsonString is "[DONE]")
                     {
-                        var line = await reader.ReadLineAsync();
-                        if (line.StartsWith("data:"))
-                        {
-                            var jsonString = line.Substring(5).Trim();
-                            if (jsonString == "[DONE]")
-                            {
-                                break;
-                            }
-                            var jsonObj = JObject.Parse(jsonString);
-                            var contentDelta = jsonObj["choices"]?[0]?["delta"]?["content"]?.ToString();
-                            if (contentDelta != null)
-                            {
-                                fullResponse.Append(contentDelta);
-                            }
-                        }
+                        break;
+                    }
+
+                    JObject jsonObj = JObject.Parse(jsonString);
+                    string? contentDelta = jsonObj["choices"]?[0]?["delta"]?["content"]?.ToString();
+                    if (contentDelta is not null)
+                    {
+                        fullResponse.Append(contentDelta);
                     }
                 }
-                return fullResponse.ToString();
             }
         }
+
+        return fullResponse.ToString();
     }
 }

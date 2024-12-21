@@ -51,7 +51,7 @@ public partial class Main : Form
         //await Task.Run(() => Consume_power());
     }
 
-    private async Task isThinkingOrNot()
+    private void isThinkingOrNot()
     {
         do
         {
@@ -87,7 +87,7 @@ public partial class Main : Form
                 continue;
             }
 
-            await Task.Delay(10);
+            Thread.Sleep(10);
         } while (true);
     }
 

@@ -11,11 +11,9 @@ using System.IO;
 using System.Drawing.Imaging;
 using System.Drawing.Drawing2D;
 using Newtonsoft.Json.Linq;
-using HtmlAgilityPack;
 using System.Net;
 using System.Net.Sockets;
 using System.Speech.Synthesis;
-using ppt=Microsoft.Office.Interop.PowerPoint;
 namespace 橘子桌面宠物
 {   
     public partial class Main : Form
@@ -41,7 +39,7 @@ namespace 橘子桌面宠物
         int power = 100;
         bool isThinking = false;
         bool isThinkingSmall = false;
-        int catchMousePicture = 0;
+        //int catchMousePicture = 0;
         int pictureStatus = 0;
         async void start()
         {
@@ -306,7 +304,7 @@ namespace 橘子桌面宠物
             show1 show1_show = new show1();
             show1_show.Show();
         }
-        async void AutoSetLocation()
+        void AutoSetLocation()
         {
            // await Task.Run(() => SpeakVoice("好好好，敢抓我是吧，看我抢你鼠标"));
             do

@@ -21,7 +21,7 @@ namespace 橘子桌面宠物
         private async void show1_Load(object sender, EventArgs e)
         {
             this.TopMost = true;
-            string r=null;
+            string? r=null;
             await Task.Delay(100);
             try
             {
@@ -31,7 +31,7 @@ namespace 橘子桌面宠物
             {
                 showLabel1.Text = "发生错误了喵"+ex;
             }
-            if (r.Contains("能量值")==true)
+            if (r?.Contains("能量值")==true)
             {
                 do
                 {

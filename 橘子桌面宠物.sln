@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "橘子桌面宠物", "橘子桌面宠物.csproj", "{33982D4B-7162-4FD9-BB9E-45D1A5B66D69}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "橘子桌面宠物", "橘子桌面宠物\橘子桌面宠物.csproj", "{33982D4B-7162-4FD9-BB9E-45D1A5B66D69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,8 +18,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {9E536111-82F0-4768-B868-98BB7CDE46E7}
 	EndGlobalSection
 EndGlobal

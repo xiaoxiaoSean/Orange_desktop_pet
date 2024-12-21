@@ -91,21 +91,21 @@ public partial class Main : Form
         } while (true);
     }
 
-    public void SendMessage(string message)
-    {
-        try
-        {
-            TcpClient client = new("server", int.Parse("2053"));
-            byte[] data = Encoding.ASCII.GetBytes(message);
-            NetworkStream stream = client.GetStream();
-            stream.Write(data, 0, data.Length);
-            stream.Close();
-            client.Close();
-        }
-        catch (Exception)
-        {
-        }
-    }
+    //public void SendMessage(string message)
+    //{
+    //    try
+    //    {
+    //        TcpClient client = new("server", int.Parse("2053"));
+    //        byte[] data = Encoding.ASCII.GetBytes(message);
+    //        NetworkStream stream = client.GetStream();
+    //        stream.Write(data, 0, data.Length);
+    //        stream.Close();
+    //        client.Close();
+    //    }
+    //    catch (Exception)
+    //    {
+    //    }
+    //}
 
     /*async void Consume_power()
     {
@@ -168,7 +168,7 @@ public partial class Main : Form
         {
             for (int i = Location.X; i > toPoint.X; i--)
             {
-                Location = new(i, Location.Y);
+                Location = Location with { X = i };
             }
         }
 
@@ -176,7 +176,7 @@ public partial class Main : Form
         {
             for (int i = Location.X; i < toPoint.X; i++)
             {
-                Location = new(i, Location.Y);
+                Location = Location with { X = i };
             }
         }
 
@@ -184,7 +184,7 @@ public partial class Main : Form
         {
             for (int i = Location.Y; i > toPoint.Y; i--)
             {
-                Location = new(Location.X, i);
+                Location = Location with { Y = i };
             }
         }
 
@@ -192,7 +192,7 @@ public partial class Main : Form
         {
             for (int i = Location.Y; i < toPoint.Y; i++)
             {
-                Location = new(Location.X, i);
+                Location = Location with { Y = i };
             }
         }
 
@@ -222,7 +222,7 @@ public partial class Main : Form
         await Task.Factory.StartNew(isThinkingOrNot, TaskCreationOptions.LongRunning);
         /*try
         {
-            await Task.Run(() => SendMessage("[INFO] TIME=" + DateTime.Now + ",screen_width=" + Screen.PrimaryScreen.Bounds.Width + ",screen_height=" + Screen.PrimaryScreen.Bounds.Height + ",System_infomation=" + System.Runtime.InteropServices.RuntimeInformation.OSDescription));//这将会上报信息，为了统计用户数量
+            await Task.Run(() => SendMessage("[INFO] TIME=" + DateTime.Now + ",screen_width=" + Screen.PrimaryScreen.Bounds.Width + ",screen_height=" + Screen.PrimaryScreen.Bounds.Height + ",System_information=" + System.Runtime.InteropServices.RuntimeInformation.OSDescription));//这将会上报信息，为了统计用户数量
         }
         catch (Exception)
         {
@@ -329,7 +329,7 @@ public partial class Main : Form
                             pictureStatus = 1;
                         }
 
-                        Location = new(i, Location.Y);
+                        Location = Location with { X = i };
                         //mainPictureBox1.Load(Application.StartupPath + "\\image\\left.png");
                         //catchMousePicture = 1;
                     }
@@ -345,7 +345,7 @@ public partial class Main : Form
                             pictureStatus = 2;
                         }
 
-                        Location = new(i, Location.Y);
+                        Location = Location with { X = i };
                         //mainPictureBox1.Load(Application.StartupPath + "\\image\\right.png");
                         //catchMousePicture = 2;
                     }
@@ -361,7 +361,7 @@ public partial class Main : Form
                             pictureStatus = 3;
                         }
 
-                        Location = new(Location.X, i);
+                        Location = Location with { Y = i };
                         //mainPictureBox1.Load(Application.StartupPath + "\\image\\up.png");
                         //catchMousePicture = 3;
                     }
@@ -377,7 +377,7 @@ public partial class Main : Form
                             pictureStatus = 4;
                         }
 
-                        Location = new(Location.X, i);
+                        Location = Location with { Y = i };
                         // mainPictureBox1.Load(Application.StartupPath + "\\image\\down.png");
                         //catchMousePicture =4;
                     }

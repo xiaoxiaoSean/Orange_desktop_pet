@@ -30,28 +30,28 @@ public partial class AskForm1 : Form
     private async Task askAI()
     {
         //WebClient client = new WebClient();
-        WriteisThinkingtxt(true);
+        WriteIsThinkingText(true);
         /*string url = "http://www.kufengai.cn/asset/model/qwens-72b.php?prompt=" + askBox1.Text;
         string html = client.DownloadString(url);
         HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
         doc.LoadHtml(html);
         string jsonText = doc.DocumentNode.InnerText;
         JObject json = JObject.Parse(jsonText);
-        WriteisThinkingtxt(false);
+        WriteIsThinkingText(false);
         string text = json["text"].ToString().Substring(0, json["text"].ToString().Count() - 24);*/ //旧代码，api已失效
         try
         {
             KimiApi kimiApi = new("sk-bGRGiYYyX9RxmZbWvvarfj8N2UNDgpiN91mYLV8pSUD35sLP", "https://api.moonshot.cn/v1/chat/completions"); //请不要滥用token
             MessageBox.Show(await kimiApi.ChatAI(askBox1.Text));
-            WriteisThinkingtxt(false);
+            WriteIsThinkingText(false);
         }
         catch (Exception)
         {
-            WriteisThinkingtxt(false);
+            WriteIsThinkingText(false);
         }
     }
 
-    private void WriteisThinkingtxt(bool isThinking)
+    private void WriteIsThinkingText(bool isThinking)
     {
     w:
         try
@@ -72,17 +72,8 @@ public partial class AskForm1 : Form
     }
 }
 
-public class KimiApi //本class的作者为kimi ai
+public class KimiApi(string apiKey, string apiUrl) //本class的作者为kimi ai
 {
-    private readonly string _apiKey;
-    private readonly string _apiUrl;
-
-    public KimiApi(string apiKey, string apiUrl)
-    {
-        _apiKey = apiKey;
-        _apiUrl = apiUrl;
-    }
-
     public async Task<string> ChatAI(string input)
     {
         var requestBody = new
@@ -101,10 +92,10 @@ public class KimiApi //本class的作者为kimi ai
         HttpRequestMessage request = new()
         {
             Method = HttpMethod.Post,
-            RequestUri = new(_apiUrl),
+            RequestUri = new(apiUrl),
             Content = content
         };
-        request.Headers.Add("Authorization", $"Bearer {_apiKey}");
+        request.Headers.Add("Authorization", $"Bearer {apiKey}");
 
         using HttpClient client = new();
         HttpResponseMessage response = await client.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);

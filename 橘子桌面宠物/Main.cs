@@ -170,7 +170,7 @@ public partial class Main : Form
         int wfreq = 20;
         if (Size.Width > toSize.Width)
         {
-            for (int i = Size.Width; i > toSize.Width; i-=20)
+            for (int i = Size.Width; i > toSize.Width; i-=wfreq)
             {
                 Size=Size with { Width = i };
                 if (times<pfreq)
@@ -188,7 +188,7 @@ public partial class Main : Form
 
         if (Size.Width < toSize.Width)
         {
-            for (int i = Size.Width; i < toSize.Width; i+=20)
+            for (int i = Size.Width; i < toSize.Width; i+= wfreq)
             {
                 Size = Size with { Width = i };
                 if (times < pfreq)
@@ -206,7 +206,7 @@ public partial class Main : Form
 
         if (Size.Height > toSize.Height)
         {
-            for (int i = Size.Height; i > toSize.Height; i-=20)
+            for (int i = Size.Height; i > toSize.Height; i-= wfreq)
             {
                 Size = Size with { Height = i };
                 if (times < pfreq)
@@ -224,7 +224,7 @@ public partial class Main : Form
 
         if (Size.Height < toSize.Height)
         {
-            for (int i = Size.Height; i < toSize.Height; i+=20)
+            for (int i = Size.Height; i < toSize.Height; i+= wfreq)
             {
                 Size = Size with { Height = i };
                 if (times < pfreq)

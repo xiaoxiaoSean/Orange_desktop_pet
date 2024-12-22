@@ -2,6 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Speech.Synthesis;
 using System.Text;
+using System.IO;
 
 namespace 橘子桌面宠物;
 
@@ -162,6 +163,84 @@ public partial class Main : Form
             }
         } while (true);
     }*/
+    private async Task EditSize(Size toSize)
+    {
+        int times = 0;
+        int pfreq = 1;
+        int wfreq = 20;
+        if (Size.Width > toSize.Width)
+        {
+            for (int i = Size.Width; i > toSize.Width; i-=20)
+            {
+                Size=Size with { Width = i };
+                if (times<pfreq)
+                {
+                    times++;
+                }
+                else
+                {
+                    mainPictureBox1.Refresh();
+                    times = 0;
+                }
+                //await Task.DelaHeight(1);
+            }
+        }
+
+        if (Size.Width < toSize.Width)
+        {
+            for (int i = Size.Width; i < toSize.Width; i+=20)
+            {
+                Size = Size with { Width = i };
+                if (times < pfreq)
+                {
+                    times++;
+                }
+                else
+                {
+                    mainPictureBox1.Refresh();
+                    times = 0;
+                }
+                //await Task.DelaHeight(1);
+            }
+        }
+
+        if (Size.Height > toSize.Height)
+        {
+            for (int i = Size.Height; i > toSize.Height; i-=20)
+            {
+                Size = Size with { Height = i };
+                if (times < pfreq)
+                {
+                    times++;
+                }
+                else
+                {
+                    mainPictureBox1.Refresh();
+                    times = 0;
+                }
+                //await Task.DelaHeight(1);
+            }
+        }
+
+        if (Size.Height < toSize.Height)
+        {
+            for (int i = Size.Height; i < toSize.Height; i+=20)
+            {
+                Size = Size with { Height = i };
+                if (times < pfreq)
+                {
+                    times++;
+                }
+                else
+                {
+                    mainPictureBox1.Refresh();
+                    times = 0;
+                }
+                //await Task.DelaHeight(1);
+            }
+        }
+        await Task.Delay(10);
+    }
     private async Task MoveTo(Point toPoint)
     {
         if (Location.X > toPoint.X)
@@ -169,6 +248,7 @@ public partial class Main : Form
             for (int i = Location.X; i > toPoint.X; i--)
             {
                 Location = Location with { X = i };
+                //await Task.Delay(1);
             }
         }
 
@@ -177,6 +257,7 @@ public partial class Main : Form
             for (int i = Location.X; i < toPoint.X; i++)
             {
                 Location = Location with { X = i };
+                //await Task.Delay(1);
             }
         }
 
@@ -185,6 +266,7 @@ public partial class Main : Form
             for (int i = Location.Y; i > toPoint.Y; i--)
             {
                 Location = Location with { Y = i };
+                //await Task.Delay(1);
             }
         }
 
@@ -193,6 +275,7 @@ public partial class Main : Form
             for (int i = Location.Y; i < toPoint.Y; i++)
             {
                 Location = Location with { Y = i };
+                //await Task.Delay(1);
             }
         }
 
@@ -204,7 +287,7 @@ public partial class Main : Form
         synthesizer.SetOutputToDefaultAudioDevice();
         //await Task.Run(() => SpeakVoice("我是Tom喵"));
         TopMost = true;
-        Size = new(Screen.PrimaryScreen.Bounds.Width / 4, Screen.PrimaryScreen.Bounds.Height / 4);
+      EditSize(new Size(Screen.PrimaryScreen.Bounds.Width / 4, Screen.PrimaryScreen.Bounds.Height / 4));
         Location = new(Screen.PrimaryScreen.Bounds.Width - Size.Width, Screen.PrimaryScreen.Bounds.Height * 74 / 100);
         mainPictureBox1.Load(Application.StartupPath + "\\image\\start1.png");
         TransparencyKey = BackColor;
@@ -219,7 +302,7 @@ public partial class Main : Form
         await MoveTo(new(Screen.PrimaryScreen.Bounds.Width - Size.Width, (Screen.PrimaryScreen.Bounds.Height * 74 / 100) - (Screen.PrimaryScreen.Bounds.Height * 5 / 100)));
         await MoveTo(new(Screen.PrimaryScreen.Bounds.Width - Size.Width, Screen.PrimaryScreen.Bounds.Height * 74 / 100));
         pictureStatus = 0;
-        await Task.Factory.StartNew(isThinkingOrNot, TaskCreationOptions.LongRunning);
+        Task.Factory.StartNew(isThinkingOrNot, TaskCreationOptions.LongRunning);
         /*try
         {
             await Task.Run(() => SendMessage("[INFO] TIME=" + DateTime.Now + ",screen_width=" + Screen.PrimaryScreen.Bounds.Width + ",screen_height=" + Screen.PrimaryScreen.Bounds.Height + ",System_information=" + System.Runtime.InteropServices.RuntimeInformation.OSDescription));//这将会上报信息，为了统计用户数量
@@ -229,6 +312,14 @@ public partial class Main : Form
         }*/
         mainPictureBox1.Load(Application.StartupPath + "\\image\\normal1.png");
         //初始化txt
+        if (!Directory.Exists(Application.StartupPath + "\\data"))
+        {
+            Directory.CreateDirectory(Application.StartupPath + "\\data");
+        }
+        if (!Directory.Exists(Application.StartupPath + "\\data\\cache"))
+        {
+            Directory.CreateDirectory(Application.StartupPath + "\\data\\cache");
+        }
         File.WriteAllText(Application.StartupPath + "\\data\\cache\\isThinking.txt", "0");
         File.WriteAllText(Application.StartupPath + "\\data\\cache\\isAskFormShow.txt", "0");
         do
@@ -256,8 +347,8 @@ public partial class Main : Form
                     }
                     await Task.Delay(10);
                 } while (this.Location == mouseLocation);*/
-                Size = new(Screen.PrimaryScreen.Bounds.Width / 4, Screen.PrimaryScreen.Bounds.Height / 4);
-                Location = new(Screen.PrimaryScreen.Bounds.Width - Size.Width, Screen.PrimaryScreen.Bounds.Height * 74 / 100);
+                EditSize( new(Screen.PrimaryScreen.Bounds.Width / 4, Screen.PrimaryScreen.Bounds.Height / 4));
+                MoveTo(new Point(Screen.PrimaryScreen.Bounds.Width - Size.Width, Screen.PrimaryScreen.Bounds.Height * 74 / 100));
             }
             else
             {
@@ -275,20 +366,20 @@ public partial class Main : Form
                 {
                     if (isThinkingSmall)
                     {
-                        Size = new(Screen.PrimaryScreen.Bounds.Width / 9, Screen.PrimaryScreen.Bounds.Height / 9);
+                        EditSize( new(Screen.PrimaryScreen.Bounds.Width / 9, Screen.PrimaryScreen.Bounds.Height / 9));
                         isThinkingSmall = false;
                         await Task.Delay(500);
                     }
                     else
                     {
-                        Size = new(Screen.PrimaryScreen.Bounds.Width / 7, Screen.PrimaryScreen.Bounds.Height / 7);
+                        EditSize( new(Screen.PrimaryScreen.Bounds.Width / 7, Screen.PrimaryScreen.Bounds.Height / 7));
                         isThinkingSmall = true;
                         await Task.Delay(500);
                     }
                 }
                 else
                 {
-                    Size = new(Screen.PrimaryScreen.Bounds.Width / 7, Screen.PrimaryScreen.Bounds.Height / 7);
+                    EditSize( new(Screen.PrimaryScreen.Bounds.Width / 7, Screen.PrimaryScreen.Bounds.Height / 7));
                 }
             }
 
@@ -304,7 +395,7 @@ public partial class Main : Form
             await Task.Delay(10);
         }
 
-        Size = new(Screen.PrimaryScreen.Bounds.Width / 5, Screen.PrimaryScreen.Bounds.Height / 5);
+        EditSize( new(Screen.PrimaryScreen.Bounds.Width / 5, Screen.PrimaryScreen.Bounds.Height / 5));
         mainPictureBox1.Load(Application.StartupPath + "\\image\\normal1.png");
         Location = new(Screen.PrimaryScreen.Bounds.Width - Size.Width, Screen.PrimaryScreen.Bounds.Height * 74 / 100);
         File.WriteAllText(Application.StartupPath + "\\data\\cache\\show1.txt", "算了算了，我也不想做个病毒程序，这次就放你一马，下次不可以点我了啊！");
@@ -411,14 +502,14 @@ public partial class Main : Form
 
     private async void mainPictureBox1_DoubleClick(object sender, EventArgs e)
     {
-        Size = new(Screen.PrimaryScreen.Bounds.Width / 7, Screen.PrimaryScreen.Bounds.Height / 7);
+        EditSize( new(Screen.PrimaryScreen.Bounds.Width / 7, Screen.PrimaryScreen.Bounds.Height / 7));
         mainPictureBox1.Load(Application.StartupPath + "\\image\\fall_down.png");
         await Task.Delay(1000);
         //mainPictureBox1.Load(Application.StartupPath + "\\image\\miao1.jpg");
         await Task.Delay(100);
         // await Task.Run(() => SpeakVoice("气死我了，我抢你鼠标！"));
         File.WriteAllText(Application.StartupPath + "\\data\\cache\\show1.txt", "气死我了，我抢你鼠标！");
-        Size = new(Screen.PrimaryScreen.Bounds.Width / 8, Screen.PrimaryScreen.Bounds.Height / 8);
+        EditSize( new(Screen.PrimaryScreen.Bounds.Width / 8, Screen.PrimaryScreen.Bounds.Height / 8));
         show1 show1_show = new();
         show1_show.Show();
         await Task.Delay(1000);

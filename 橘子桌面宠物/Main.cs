@@ -355,6 +355,7 @@ public partial class Main : Form
     {
         synthesizer.SetOutputToDefaultAudioDevice();
         //await Task.Run(() => SpeakVoice("我是Tom喵"));
+        contextMenuStrip1.Visible = false;
         TopMost = true;
       EditSize(new Size(Screen.PrimaryScreen.Bounds.Width / 4, Screen.PrimaryScreen.Bounds.Height / 4));
         Location = new(Screen.PrimaryScreen.Bounds.Width - Size.Width, Screen.PrimaryScreen.Bounds.Height * 74 / 100);
@@ -599,15 +600,35 @@ public partial class Main : Form
 
     private void mainPictureBox1_Click(object sender, EventArgs e)
     {
-        if (File.Exists(Application.StartupPath + "\\data\\cache\\isAskFormShow.txt") && File.ReadAllText(Application.StartupPath + "\\data\\cache\\isAskFormShow.txt") is "1")
+       
+    }
+
+    private void 设置ToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+
+    }
+    private void mainPictureBox1_MouseClick(object sender, MouseEventArgs e)
+    {
+        if (e.Button == MouseButtons.Right)
         {
-            showAskForm1.Hide();
-            File.WriteAllText(Application.StartupPath + "\\data\\cache\\isAskFormShow.txt", "0");
+            contextMenuStrip1.Show(this, Point.Empty);
         }
         else
         {
-            showAskForm1.Show();
-            File.WriteAllText(Application.StartupPath + "\\data\\cache\\isAskFormShow.txt", "1");
+            if (File.Exists(Application.StartupPath + "\\data\\cache\\isAskFormShow.txt") && File.ReadAllText(Application.StartupPath + "\\data\\cache\\isAskFormShow.txt") is "1")
+            {
+                showAskForm1.Hide();
+                File.WriteAllText(Application.StartupPath + "\\data\\cache\\isAskFormShow.txt", "0");
+            }
+            else
+            {
+                showAskForm1.Show();
+                File.WriteAllText(Application.StartupPath + "\\data\\cache\\isAskFormShow.txt", "1");
+            }
         }
+    }
+    private void contextMenuStrip1_MouseClick(object sender, MouseEventArgs e)
+    {
+
     }
 }

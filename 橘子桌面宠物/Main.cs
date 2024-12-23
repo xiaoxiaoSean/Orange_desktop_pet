@@ -29,11 +29,13 @@ public partial class Main : Form
     private bool isOrigin = true;
     private bool isThinking;
     private bool isThinkingSmall;
-
+    bool nearMouse = false;
     //bool isMouseLocation = false;
     private Point mouseLocation;
     private Point mousePoint1;
-
+    bool pleaseMoveMainLoad = false;
+    Point mainLoadThisIsPoint = Point.Empty;
+    int mainLoadPleaseDelayDuringMoving = 0;
     //int catchMousePicture = 0;
     private int pictureStatus;
 
@@ -241,6 +243,46 @@ public partial class Main : Form
         }
         await Task.Delay(10);
     }
+    private async Task MoveToWithDelay(Point toPoint,int delayTime)
+    {
+        if (Location.X > toPoint.X)
+        {
+            for (int i = Location.X; i > toPoint.X; i--)
+            {
+                Location = Location with { X = i };
+                await Task.Delay(delayTime);
+            }
+        }
+
+        if (Location.X < toPoint.X)
+        {
+            for (int i = Location.X; i < toPoint.X; i++)
+            {
+                Location = Location with { X = i };
+                await Task.Delay(delayTime);
+            }
+        }
+
+        if (Location.Y > toPoint.Y)
+        {
+            for (int i = Location.Y; i > toPoint.Y; i--)
+            {
+                Location = Location with { Y = i };
+                await Task.Delay(delayTime);
+            }
+        }
+
+        if (Location.Y < toPoint.Y)
+        {
+            for (int i = Location.Y; i < toPoint.Y; i++)
+            {
+                Location = Location with { Y = i };
+                await Task.Delay(delayTime);
+            }
+        }
+
+        await Task.Delay(10);
+    }
     private async Task MoveTo(Point toPoint)
     {
         if (Location.X > toPoint.X)
@@ -281,7 +323,34 @@ public partial class Main : Form
 
         await Task.Delay(10);
     }
-
+    private async void MouseAnim()
+    {
+        do
+        {
+            Point mp = mouseLocation;
+            // MessageBox.Show("mouse_anim is ready");
+            //MessageBox.Show(Screen.PrimaryScreen.Bounds.Width + "," + mp.X);
+            if (!nearMouse)
+            {
+                MoveTo(new Point(Screen.PrimaryScreen.Bounds.Width - Size.Width, Screen.PrimaryScreen.Bounds.Height * 74 / 100));
+            }
+            if (Screen.PrimaryScreen.Bounds.Width- Screen.PrimaryScreen.Bounds.Width / 4 - mouseLocation.X<=Screen.PrimaryScreen.Bounds.Width/100&& (Screen.PrimaryScreen.Bounds.Width - mouseLocation.X>this.Size.Width-Screen.PrimaryScreen.Bounds.Width/50))
+            {
+                mp = mp with { X = mp.X- Screen.PrimaryScreen.Bounds.Width/200};
+                mainLoadThisIsPoint = mp;
+                mainLoadPleaseDelayDuringMoving = 2;
+                pleaseMoveMainLoad = true;
+                nearMouse = true;
+                continue;
+                //MessageBox.Show("mouse_anim 1,"+mouseLocation.X+","+this.Location.X);
+            }
+            else
+            {
+                nearMouse = false;
+            }
+            Thread.Sleep(100);
+        } while (true);
+    }
     private async void Main_Load(object sender, EventArgs e)
     {
         synthesizer.SetOutputToDefaultAudioDevice();
@@ -303,6 +372,7 @@ public partial class Main : Form
         await MoveTo(new(Screen.PrimaryScreen.Bounds.Width - Size.Width, Screen.PrimaryScreen.Bounds.Height * 74 / 100));
         pictureStatus = 0;
         Task.Factory.StartNew(isThinkingOrNot, TaskCreationOptions.LongRunning);
+        //Task.Factory.StartNew(MouseAnim, TaskCreationOptions.LongRunning);
         /*try
         {
             await Task.Run(() => SendMessage("[INFO] TIME=" + DateTime.Now + ",screen_width=" + Screen.PrimaryScreen.Bounds.Width + ",screen_height=" + Screen.PrimaryScreen.Bounds.Height + ",System_information=" + System.Runtime.InteropServices.RuntimeInformation.OSDescription));//这将会上报信息，为了统计用户数量
@@ -324,6 +394,13 @@ public partial class Main : Form
         File.WriteAllText(Application.StartupPath + "\\data\\cache\\isAskFormShow.txt", "0");
         do
         {
+            if (pleaseMoveMainLoad)
+            {
+                await MoveToWithDelay(mainLoadThisIsPoint,mainLoadPleaseDelayDuringMoving);
+                mainLoadThisIsPoint = Point.Empty;
+                mainLoadPleaseDelayDuringMoving = 0;
+                pleaseMoveMainLoad = false;
+            }
             if (File.ReadAllText(Application.StartupPath + "\\data\\cache\\isAskFormShow.txt") is "0")
             {
                 /* do
@@ -348,7 +425,10 @@ public partial class Main : Form
                     await Task.Delay(10);
                 } while (this.Location == mouseLocation);*/
                 EditSize( new(Screen.PrimaryScreen.Bounds.Width / 4, Screen.PrimaryScreen.Bounds.Height / 4));
-                MoveTo(new Point(Screen.PrimaryScreen.Bounds.Width - Size.Width, Screen.PrimaryScreen.Bounds.Height * 74 / 100));
+                if (!nearMouse)
+                {
+                    MoveTo(new Point(Screen.PrimaryScreen.Bounds.Width - Size.Width, Screen.PrimaryScreen.Bounds.Height * 74 / 100));
+                }
             }
             else
             {

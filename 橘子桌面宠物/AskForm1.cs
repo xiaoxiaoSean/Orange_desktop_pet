@@ -29,20 +29,19 @@ public partial class AskForm1 : Form
 
     private async Task askAI()
     {
-        //WebClient client = new WebClient();
         WriteIsThinkingText(true);
-        /*string url = "http://www.kufengai.cn/asset/model/qwens-72b.php?prompt=" + askBox1.Text;
-        string html = client.DownloadString(url);
-        HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
-        doc.LoadHtml(html);
-        string jsonText = doc.DocumentNode.InnerText;
-        JObject json = JObject.Parse(jsonText);
-        WriteIsThinkingText(false);
-        string text = json["text"].ToString().Substring(0, json["text"].ToString().Count() - 24);*/ //旧代码，api已失效
+        // string url = "http://www.kufengai.cn/asset/model/qwens-72b.php?prompt=" + askBox1.Text;
+        // WebClient client = new WebClient();
+        // HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
+        // string html = client.DownloadString(url);
+        // doc.LoadHtml(html);
+        // string jsonText = doc.DocumentNode.InnerText;
+        // JObject json = JObject.Parse(jsonText);
+        // WriteIsThinkingText(false);
+        // string text = json["text"].ToString().Substring(0, json["text"].ToString().Count() - 24); // 旧代码，api已失效
         try
         {
-            KimiApi kimiApi = new ();
-            kimiApi.init("sk-bGRGiYYyX9RxmZbWvvarfj8N2UNDgpiN91mYLV8pSUD35sLP", "https://api.moonshot.cn/v1/chat/completions");//请不要滥用token
+            KimiApi kimiApi = new("sk-bGRGiYYyX9RxmZbWvvarfj8N2UNDgpiN91mYLV8pSUD35sLP", "https:api.moonshot.cn/v1/chat/completions"); // 请不要滥用token
             MessageBox.Show(await kimiApi.ChatAI(askBox1.Text));
             WriteIsThinkingText(false);
         }
@@ -52,36 +51,26 @@ public partial class AskForm1 : Form
         }
     }
 
-    private void WriteIsThinkingText(bool isThinking)
+    private static void WriteIsThinkingText(bool isThinking)
     {
-    w:
-        try
+        do
         {
-            if (isThinking)
+            try
             {
-                File.WriteAllText(Application.StartupPath + "\\data\\cache\\isThinking.txt", "1");
+                File.WriteAllText(Application.StartupPath + "\\data\\cache\\isThinking.txt", isThinking ? "1" : "0");
             }
-            else
+            catch (Exception)
             {
-                File.WriteAllText(Application.StartupPath + "\\data\\cache\\isThinking.txt", "0");
+                continue;
             }
-        }
-        catch (Exception)
-        {
-            goto w;
-        }
+
+            break;
+        } while (true);
     }
 }
 
-public class KimiApi //本class的作者为kimi ai
+public class KimiApi(string apiKey, string apiUrl) // 本class的作者为kimi ai
 {
-    string apiKey;
-    string apiUrl;
-    public async void init(string key,string url)
-    {
-        apiKey = key;
-        apiUrl = url;
-    }
     public async Task<string> ChatAI(string input)
     {
         var requestBody = new
@@ -114,20 +103,22 @@ public class KimiApi //本class的作者为kimi ai
             while (!reader.EndOfStream)
             {
                 string line = await reader.ReadLineAsync();
-                if (line.StartsWith("data:"))
+                if (!line.StartsWith("data:"))
                 {
-                    string jsonString = line.Substring(5).Trim();
-                    if (jsonString is "[DONE]")
-                    {
-                        break;
-                    }
+                    continue;
+                }
 
-                    JObject jsonObj = JObject.Parse(jsonString);
-                    string? contentDelta = jsonObj["choices"]?[0]?["delta"]?["content"]?.ToString();
-                    if (contentDelta is not null)
-                    {
-                        fullResponse.Append(contentDelta);
-                    }
+                string jsonString = line.Substring(5).Trim();
+                if (jsonString is "[DONE]")
+                {
+                    break;
+                }
+
+                JObject jsonObj = JObject.Parse(jsonString);
+                string? contentDelta = jsonObj["choices"]?[0]?["delta"]?["content"]?.ToString();
+                if (contentDelta is not null)
+                {
+                    fullResponse.Append(contentDelta);
                 }
             }
         }

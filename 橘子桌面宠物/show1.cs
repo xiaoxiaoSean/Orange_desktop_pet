@@ -10,7 +10,7 @@ public partial class show1 : Form
     private async void show1_Load(object sender, EventArgs e)
     {
         TopMost = true;
-        string? r = null;
+        string r = string.Empty;
         await Task.Delay(100);
         try
         {
@@ -21,7 +21,7 @@ public partial class show1 : Form
             showLabel1.Text = "发生错误了喵" + ex;
         }
 
-        if (r?.Contains("能量值") is true)
+        if (r.Contains("能量值"))
         {
             do
             {

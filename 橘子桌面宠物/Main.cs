@@ -62,12 +62,12 @@ public partial class Main : Form
                     // SpeakVoice("Tom喵正在思考中");
                     if (isOrigin)
                     {
-                        Location = new(Location.X, Location.Y - (Screen.PrimaryScreen.Bounds.Height / 200));
+                        MoveTo(new Point(Location.X, Location.Y - (Screen.PrimaryScreen.Bounds.Height / 200)));
                         isOrigin = false;
                     }
                     else
                     {
-                        Location = new(Location.X, Location.Y + (Screen.PrimaryScreen.Bounds.Height / 200));
+                        MoveTo(new Point(Location.X, Location.Y + (Screen.PrimaryScreen.Bounds.Height / 200)));
                         isOrigin = true;
                     }
                 }
@@ -76,7 +76,7 @@ public partial class Main : Form
                     isThinking = false;
                     if (!isOrigin)
                     {
-                        Location = new(Screen.PrimaryScreen.Bounds.Width - Size.Width, Screen.PrimaryScreen.Bounds.Height * 74 / 100);
+                        MoveTo(new Point(Screen.PrimaryScreen.Bounds.Width - Size.Width, Screen.PrimaryScreen.Bounds.Height * 74 / 100));
                         isOrigin = true;
                     }
                 }

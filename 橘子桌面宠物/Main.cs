@@ -613,6 +613,8 @@ public partial class Main : Form
 
     private void 设置ToolStripMenuItem_Click(object sender, EventArgs e)
     {
+        SettingsForm1 settingsForm1=new SettingsForm1();
+        settingsForm1.ShowDialog();
     }
 
     private void mainPictureBox1_MouseClick(object sender, MouseEventArgs e)

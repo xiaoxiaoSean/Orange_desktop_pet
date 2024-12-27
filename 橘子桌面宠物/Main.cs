@@ -641,4 +641,13 @@ public partial class Main : Form
     private void contextMenuStrip1_MouseClick(object sender, MouseEventArgs e)
     {
     }
+
+    private void 退出ToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        if (MessageBox.Show("要退出橘子桌面宠物吗？\n 这将会清除所有内容","退出 橘子桌面宠物",MessageBoxButtons.YesNo,MessageBoxIcon.Question)==DialogResult.Yes)
+        {
+            this.Close();
+            Application.Exit();
+        }
+    }
 }

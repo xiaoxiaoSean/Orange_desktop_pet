@@ -607,10 +607,6 @@ public partial class Main : Form
         await AutoSetLocation();
     }
 
-    private void mainPictureBox1_Click(object sender, EventArgs e)
-    {
-    }
-
     private void 设置ToolStripMenuItem_Click(object sender, EventArgs e)
     {
         SettingsForm1 settingsForm1=new SettingsForm1();

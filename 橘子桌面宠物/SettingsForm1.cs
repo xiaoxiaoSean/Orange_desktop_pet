@@ -162,5 +162,22 @@ namespace 橘子桌面宠物
                 label1.Text = "橘子桌面宠物";
             }
         }
+
+        private async void label1_DoubleClick(object sender, EventArgs e)
+        {
+            for (int ia = 0; ia< 255; ia+=40) {
+                for (int ib = 0; ib < 255; ib+=40)
+                {
+                    for (int ic = 0; ic < 255; ic+=40)
+                    {
+                        label1.ForeColor = Color.FromArgb(ia, ib, ic);
+                        await Task.Delay(1);
+                    }
+
+                }
+;            }
+            EasterEgg easterEgg = new EasterEgg();
+            easterEgg.ShowDialog();
+        }
     }
 }

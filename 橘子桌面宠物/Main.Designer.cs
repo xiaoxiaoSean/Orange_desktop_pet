@@ -44,13 +44,12 @@
             // 
             this.mainPictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.mainPictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.mainPictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.mainPictureBox1.Name = "mainPictureBox1";
-            this.mainPictureBox1.Size = new System.Drawing.Size(196, 131);
+            this.mainPictureBox1.Size = new System.Drawing.Size(147, 105);
             this.mainPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.mainPictureBox1.TabIndex = 0;
             this.mainPictureBox1.TabStop = false;
-            this.mainPictureBox1.Click += new System.EventHandler(this.mainPictureBox1_Click);
             this.mainPictureBox1.DoubleClick += new System.EventHandler(this.mainPictureBox1_DoubleClick);
             this.mainPictureBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mainPictureBox1_MouseClick);
             // 
@@ -94,12 +93,12 @@
             // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(196, 131);
+            this.ClientSize = new System.Drawing.Size(147, 105);
             this.Controls.Add(this.mainPictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Main";
             this.Text = "Main";
             this.Load += new System.EventHandler(this.Main_Load);

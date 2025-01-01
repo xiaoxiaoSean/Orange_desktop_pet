@@ -32,9 +32,9 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.copyButton = new System.Windows.Forms.Button();
             this.poweredByBox = new System.Windows.Forms.TextBox();
-            this.answerBox = new System.Windows.Forms.TextBox();
             this.saveAsButton = new System.Windows.Forms.Button();
             this.closeThisWindowsButton = new System.Windows.Forms.Button();
+            this.answerBox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -61,7 +61,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.2749F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68.7251F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 157F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 269F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 270F));
             this.tableLayoutPanel2.Controls.Add(this.copyButton, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.poweredByBox, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.saveAsButton, 2, 0);
@@ -79,7 +79,7 @@
             this.copyButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.copyButton.Location = new System.Drawing.Point(3, 3);
             this.copyButton.Name = "copyButton";
-            this.copyButton.Size = new System.Drawing.Size(109, 52);
+            this.copyButton.Size = new System.Drawing.Size(108, 52);
             this.copyButton.TabIndex = 0;
             this.copyButton.Text = "复制到剪切板";
             this.copyButton.UseVisualStyleBackColor = true;
@@ -88,12 +88,34 @@
             // poweredByBox
             // 
             this.poweredByBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.poweredByBox.Location = new System.Drawing.Point(118, 3);
+            this.poweredByBox.Location = new System.Drawing.Point(117, 3);
             this.poweredByBox.Name = "poweredByBox";
             this.poweredByBox.ReadOnly = true;
             this.poweredByBox.Size = new System.Drawing.Size(246, 25);
             this.poweredByBox.TabIndex = 1;
             this.poweredByBox.Text = "Powered By Kimi AI";
+            // 
+            // saveAsButton
+            // 
+            this.saveAsButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.saveAsButton.Location = new System.Drawing.Point(369, 3);
+            this.saveAsButton.Name = "saveAsButton";
+            this.saveAsButton.Size = new System.Drawing.Size(151, 52);
+            this.saveAsButton.TabIndex = 2;
+            this.saveAsButton.Text = "保存为...";
+            this.saveAsButton.UseVisualStyleBackColor = true;
+            this.saveAsButton.Click += new System.EventHandler(this.saveAsButton_Click);
+            // 
+            // closeThisWindowsButton
+            // 
+            this.closeThisWindowsButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.closeThisWindowsButton.Location = new System.Drawing.Point(526, 3);
+            this.closeThisWindowsButton.Name = "closeThisWindowsButton";
+            this.closeThisWindowsButton.Size = new System.Drawing.Size(265, 52);
+            this.closeThisWindowsButton.TabIndex = 3;
+            this.closeThisWindowsButton.Text = "关闭本窗口";
+            this.closeThisWindowsButton.UseVisualStyleBackColor = true;
+            this.closeThisWindowsButton.Click += new System.EventHandler(this.closeThisWindowsButton_Click);
             // 
             // answerBox
             // 
@@ -106,27 +128,6 @@
             this.answerBox.Size = new System.Drawing.Size(794, 333);
             this.answerBox.TabIndex = 1;
             this.answerBox.Text = "来自AI的回答";
-            // 
-            // saveAsButton
-            // 
-            this.saveAsButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.saveAsButton.Location = new System.Drawing.Point(370, 3);
-            this.saveAsButton.Name = "saveAsButton";
-            this.saveAsButton.Size = new System.Drawing.Size(151, 52);
-            this.saveAsButton.TabIndex = 2;
-            this.saveAsButton.Text = "保存为...";
-            this.saveAsButton.UseVisualStyleBackColor = true;
-            // 
-            // closeThisWindowsButton
-            // 
-            this.closeThisWindowsButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.closeThisWindowsButton.Location = new System.Drawing.Point(527, 3);
-            this.closeThisWindowsButton.Name = "closeThisWindowsButton";
-            this.closeThisWindowsButton.Size = new System.Drawing.Size(264, 52);
-            this.closeThisWindowsButton.TabIndex = 3;
-            this.closeThisWindowsButton.Text = "关闭本窗口";
-            this.closeThisWindowsButton.UseVisualStyleBackColor = true;
-            this.closeThisWindowsButton.Click += new System.EventHandler(this.closeThisWindowsButton_Click);
             // 
             // AnswerForm
             // 

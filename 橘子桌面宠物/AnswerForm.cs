@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace 橘子桌面宠物
 {
@@ -91,5 +92,20 @@ namespace 橘子桌面宠物
             copyButton.ForeColor = Color.Black;
             copyButton.Text = "复制到剪切板";
 ;        }
+
+        private async void saveAsButton_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "txt 文本文件 (*.txt)|*.txt";
+            if (saveFileDialog.ShowDialog()==DialogResult.OK)
+            {
+                File.WriteAllText(saveFileDialog.FileName, answer);
+                saveAsButton.ForeColor=Color.Green;
+                saveAsButton.Text = "已保存";
+                await Task.Delay(1000);
+                saveAsButton.ForeColor = Color.Black;
+                saveAsButton.Text = "保存为...";
+            }
+        }
     }
 }

@@ -42,7 +42,7 @@ public partial class AskForm1 : Form
         try
         {
             KimiApi kimiApi = new("sk-bGRGiYYyX9RxmZbWvvarfj8N2UNDgpiN91mYLV8pSUD35sLP", "https://api.moonshot.cn/v1/chat/completions"); // 请不要滥用token
-            string answer = await kimiApi.ChatAI(askBox1.Text);
+            string answer = await Task.Run(()=> kimiApi.ChatAI(askBox1.Text));
             AnswerForm answerForm = new AnswerForm(answer);
             answerForm.Show();
             WriteIsThinkingText(false);

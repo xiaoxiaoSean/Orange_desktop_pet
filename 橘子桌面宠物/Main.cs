@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Speech.Synthesis;
 
 namespace 橘子桌面宠物;
@@ -29,8 +30,7 @@ public partial class Main : Form
     private int pictureStatus;
     private bool pleaseMoveMainLoad;
     private int power = 100;
-
-    public Main()
+public Main()
     {
         InitializeComponent();
         start();
@@ -364,7 +364,7 @@ public partial class Main : Form
         TopMost = true;
         await EditSize(new(Screen.PrimaryScreen.Bounds.Width / 4, Screen.PrimaryScreen.Bounds.Height / 4));
         Location = new(Screen.PrimaryScreen.Bounds.Width - Size.Width, Screen.PrimaryScreen.Bounds.Height * 74 / 100);
-        mainPictureBox1.Load(Application.StartupPath + "\\image\\start1.png");
+        mainPictureBox1.Image = Properties.Resources.start1;
         TransparencyKey = BackColor;
         ShowIcon = false;
         ShowInTaskbar = false;
@@ -387,7 +387,7 @@ public partial class Main : Form
         // {
         // }
 
-        mainPictureBox1.Load(Application.StartupPath + "\\image\\normal1.png");
+        mainPictureBox1.Image = Properties.Resources.normal1;
         // 初始化txt
         if (!Directory.Exists(Application.StartupPath + "\\data"))
         {
@@ -486,7 +486,7 @@ public partial class Main : Form
         }
 
         await EditSize(new(Screen.PrimaryScreen.Bounds.Width / 5, Screen.PrimaryScreen.Bounds.Height / 5));
-        mainPictureBox1.Load(Application.StartupPath + "\\image\\normal1.png");
+        mainPictureBox1.Image = Properties.Resources.normal1;
         Location = new(Screen.PrimaryScreen.Bounds.Width - Size.Width, Screen.PrimaryScreen.Bounds.Height * 74 / 100);
         File.WriteAllText(Application.StartupPath + "\\data\\cache\\show1.txt", "算了算了，我也不想做个病毒程序，这次就放你一马，下次不可以点我了啊！");
         show1 show1_show = new();
@@ -506,11 +506,22 @@ public partial class Main : Form
                     {
                         if (pictureStatus is not 1)
                         {
-                            mainPictureBox1.Load(Application.StartupPath + "\\image\\left.png");
+                            mainPictureBox1.Image=Properties.Resources.left;
+                            await Task.Delay(1);
                             pictureStatus = 1;
                         }
-
+                        if (Location==mouseLocation)
+                        {
+                            File.WriteAllText(Application.StartupPath + "\\data\\cache\\show1.txt", "抢到啦！");
+                            mousePoint1 = MousePosition;
+                            show1 show1_show = new();
+                            show1_show.Show();
+                            pictureStatus = 0;
+                            await catch_mouse();
+                            break;
+                        }
                         Location = Location with { X = i };
+                        await Task.Delay(1);
                         // mainPictureBox1.Load(Application.StartupPath + "\\image\\left.png");
                         // catchMousePicture = 1;
                     }
@@ -522,11 +533,22 @@ public partial class Main : Form
                     {
                         if (pictureStatus is not 2)
                         {
-                            mainPictureBox1.Load(Application.StartupPath + "\\image\\right.png");
+                            mainPictureBox1.Image = Properties.Resources.right;
+                            await Task.Delay(1);
                             pictureStatus = 2;
                         }
-
+                        if (Location == mouseLocation)
+                        {
+                            File.WriteAllText(Application.StartupPath + "\\data\\cache\\show1.txt", "抢到啦！");
+                            mousePoint1 = MousePosition;
+                            show1 show1_show = new();
+                            show1_show.Show();
+                            pictureStatus = 0;
+                            await catch_mouse();
+                            break;
+                        }
                         Location = Location with { X = i };
+                        await Task.Delay(1);
                         // mainPictureBox1.Load(Application.StartupPath + "\\image\\right.png");
                         // catchMousePicture = 2;
                     }
@@ -538,11 +560,22 @@ public partial class Main : Form
                     {
                         if (pictureStatus is not 3)
                         {
-                            mainPictureBox1.Load(Application.StartupPath + "\\image\\up.png");
+                            mainPictureBox1.Image = Properties.Resources.up;
+                            await Task.Delay(1);
                             pictureStatus = 3;
                         }
-
+                        if (Location == mouseLocation)
+                        {
+                            File.WriteAllText(Application.StartupPath + "\\data\\cache\\show1.txt", "抢到啦！");
+                            mousePoint1 = MousePosition;
+                            show1 show1_show = new();
+                            show1_show.Show();
+                            pictureStatus = 0;
+                            await catch_mouse();
+                            break;
+                        }
                         Location = Location with { Y = i };
+                        await Task.Delay(1);
                         // mainPictureBox1.Load(Application.StartupPath + "\\image\\up.png");
                         // catchMousePicture = 3;
                     }
@@ -554,11 +587,22 @@ public partial class Main : Form
                     {
                         if (pictureStatus is not 4)
                         {
-                            mainPictureBox1.Load(Application.StartupPath + "\\image\\down.png");
+                            mainPictureBox1.Image = Properties.Resources.down;
+                            await Task.Delay(1);
                             pictureStatus = 4;
                         }
-
+                        if (Location == mouseLocation)
+                        {
+                            File.WriteAllText(Application.StartupPath + "\\data\\cache\\show1.txt", "抢到啦！");
+                            mousePoint1 = MousePosition;
+                            show1 show1_show = new();
+                            show1_show.Show();
+                            pictureStatus = 0;
+                            await catch_mouse();
+                            break;
+                        }
                         Location = Location with { Y = i };
+                        await Task.Delay(1);
                         // mainPictureBox1.Load(Application.StartupPath + "\\image\\down.png");
                         // catchMousePicture = 4;
                     }
@@ -578,6 +622,8 @@ public partial class Main : Form
 
             TopMost = true;
         } while (true);
+        showAskForm1.Hide();
+        File.WriteAllText(Application.StartupPath + "\\data\\cache\\isAskFormShow.txt", "0");
     }
 
     private void updateMouseLocation()
@@ -593,7 +639,7 @@ public partial class Main : Form
     private async void mainPictureBox1_DoubleClick(object sender, EventArgs e)
     {
         await EditSize(new(Screen.PrimaryScreen.Bounds.Width / 7, Screen.PrimaryScreen.Bounds.Height / 7));
-        mainPictureBox1.Load(Application.StartupPath + "\\image\\fall_down.png");
+        mainPictureBox1.Image = Properties.Resources.fall_down;
         await Task.Delay(1000);
         // mainPictureBox1.Load(Application.StartupPath + "\\image\\miao1.jpg");
         // await Task.Delay(100);

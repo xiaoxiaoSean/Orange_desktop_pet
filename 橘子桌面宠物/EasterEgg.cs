@@ -29,7 +29,7 @@ namespace 橘子桌面宠物
             this.TopMost = true;
             this.WindowState = FormWindowState.Maximized;
             this.Opacity = 0.00;
-            pictureBox1.Load(Application.StartupPath + "\\image\\DONTDELETETHISFILE.dontdeletethisfile");
+            //pictureBox1.Load(Application.StartupPath + "\\image\\DONTDELETETHISFILE.dontdeletethisfile");
             for (double i = 0.00; i < 100.00; i += 0.01)
             {
                 this.Opacity = i;

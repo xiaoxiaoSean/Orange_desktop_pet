@@ -73,6 +73,16 @@ namespace 橘子桌面宠物.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap easter_egg {
+            get {
+                object obj = ResourceManager.GetObject("easter_egg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap fall_down {
             get {
                 object obj = ResourceManager.GetObject("fall_down", resourceCulture);
@@ -126,6 +136,16 @@ namespace 橘子桌面宠物.Properties {
         internal static System.Drawing.Bitmap up {
             get {
                 object obj = ResourceManager.GetObject("up", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 橘子桌面宠物初代版本纪念1_2 {
+            get {
+                object obj = ResourceManager.GetObject("橘子桌面宠物初代版本纪念1-2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

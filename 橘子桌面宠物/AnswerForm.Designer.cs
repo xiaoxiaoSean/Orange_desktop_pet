@@ -61,7 +61,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.2749F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68.7251F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 157F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 270F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 271F));
             this.tableLayoutPanel2.Controls.Add(this.copyButton, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.poweredByBox, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.saveAsButton, 2, 0);
@@ -91,14 +91,14 @@
             this.poweredByBox.Location = new System.Drawing.Point(117, 3);
             this.poweredByBox.Name = "poweredByBox";
             this.poweredByBox.ReadOnly = true;
-            this.poweredByBox.Size = new System.Drawing.Size(246, 25);
+            this.poweredByBox.Size = new System.Drawing.Size(245, 25);
             this.poweredByBox.TabIndex = 1;
             this.poweredByBox.Text = "Powered By Kimi AI";
             // 
             // saveAsButton
             // 
             this.saveAsButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.saveAsButton.Location = new System.Drawing.Point(369, 3);
+            this.saveAsButton.Location = new System.Drawing.Point(368, 3);
             this.saveAsButton.Name = "saveAsButton";
             this.saveAsButton.Size = new System.Drawing.Size(151, 52);
             this.saveAsButton.TabIndex = 2;
@@ -109,9 +109,9 @@
             // closeThisWindowsButton
             // 
             this.closeThisWindowsButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.closeThisWindowsButton.Location = new System.Drawing.Point(526, 3);
+            this.closeThisWindowsButton.Location = new System.Drawing.Point(525, 3);
             this.closeThisWindowsButton.Name = "closeThisWindowsButton";
-            this.closeThisWindowsButton.Size = new System.Drawing.Size(265, 52);
+            this.closeThisWindowsButton.Size = new System.Drawing.Size(266, 52);
             this.closeThisWindowsButton.TabIndex = 3;
             this.closeThisWindowsButton.Text = "关闭本窗口";
             this.closeThisWindowsButton.UseVisualStyleBackColor = true;

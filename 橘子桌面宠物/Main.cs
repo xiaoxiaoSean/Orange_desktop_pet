@@ -692,4 +692,15 @@ public Main()
             Application.Exit();
         }
     }
+
+    private void 随机存取存储器ToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void cPUToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        CPUmonitor cPUmonitor = new CPUmonitor();
+        cPUmonitor.Show();
+    }
 }

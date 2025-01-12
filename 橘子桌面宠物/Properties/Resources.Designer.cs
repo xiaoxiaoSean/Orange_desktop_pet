@@ -139,15 +139,5 @@ namespace 橘子桌面宠物.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
-        internal static System.Drawing.Bitmap 橘子桌面宠物初代版本纪念1_2 {
-            get {
-                object obj = ResourceManager.GetObject("橘子桌面宠物初代版本纪念1-2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
     }
 }

@@ -66,14 +66,16 @@ namespace 橘子桌面宠物
             this.Hide();
         }
 
-        private void CPUmonitor_MouseEnter(object sender, EventArgs e)
+        private async void CPUmonitor_MouseEnter(object sender, EventArgs e)
         {
             this.FormBorderStyle = FormBorderStyle.Sizable;
+            await Task.Delay(2000);
         }
 
-        private void CPUmonitor_MouseLeave(object sender, EventArgs e)
+        private async void CPUmonitor_MouseLeave(object sender, EventArgs e)
         {
             this.FormBorderStyle= FormBorderStyle.None;
+            await Task.Delay(2000);
         }
     }
 }

@@ -41,6 +41,7 @@
             this.label1.Size = new System.Drawing.Size(103, 30);
             this.label1.TabIndex = 0;
             this.label1.Text = "label1";
+            this.label1.DoubleClick += new System.EventHandler(this.label1_DoubleClick);
             // 
             // CPUmonitor
             // 
@@ -53,8 +54,6 @@
             this.Text = "CPUmonitor";
             this.Load += new System.EventHandler(this.CPUmonitor_Load);
             this.DoubleClick += new System.EventHandler(this.CPUmonitor_DoubleClick);
-            this.MouseEnter += new System.EventHandler(this.CPUmonitor_MouseEnter);
-            this.MouseLeave += new System.EventHandler(this.CPUmonitor_MouseLeave);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -28,6 +28,7 @@ namespace 橘子桌面宠物
             IsStorageEnabled = true,
             IsBatteryEnabled = true,
         };
+        bool isEditing = false;
         public float GetCpuUsage()
         {
             foreach (IHardware hardware in computer.Hardware)
@@ -54,28 +55,47 @@ namespace 橘子桌面宠物
             this.Size = new Size(Screen.PrimaryScreen.Bounds.Width / 6, Screen.PrimaryScreen.Bounds.Height / 30);
             do
             {
-               label1.Text = "CPU占用率：" + GetCpuUsage().ToString() + "%";
-                computer.Reset();
-                await Task.Delay(1000);
+                if (!isEditing)
+                {
+                    label1.Text = "CPU占用率：" + GetCpuUsage().ToString() + "%";
+                    computer.Reset();
+                    await Task.Delay(1000);
+                }
+                else
+                {
+                    Point mp = MousePosition;
+                    mp.X=mp.X-this.Size.Width/2;
+                    mp.Y=mp.Y-this.Size.Height/2;
+                    this.Location = mp;
+                    label1.Text ="双击可以退出位置编辑模式...";
+                    await Task.Delay(1);
+                }
             } while (true);
 
         }
 
         private void CPUmonitor_DoubleClick(object sender, EventArgs e)
         {
-            this.Hide();
+            if (!isEditing)
+            {
+                isEditing = true;
+            }
+            else
+            {
+                isEditing = false;
+            }
         }
 
-        private async void CPUmonitor_MouseEnter(object sender, EventArgs e)
+        private void label1_DoubleClick(object sender, EventArgs e)
         {
-            this.FormBorderStyle = FormBorderStyle.Sizable;
-            await Task.Delay(2000);
-        }
-
-        private async void CPUmonitor_MouseLeave(object sender, EventArgs e)
-        {
-            this.FormBorderStyle= FormBorderStyle.None;
-            await Task.Delay(2000);
+            if (!isEditing)
+            {
+                isEditing = true;
+            }
+            else
+            {
+                isEditing = false;
+            }
         }
     }
 }

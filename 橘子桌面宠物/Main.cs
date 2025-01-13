@@ -699,9 +699,19 @@ public Main()
         rAMmonitor.Show();
     }
 
-    private void cPUToolStripMenuItem_Click(object sender, EventArgs e)
+    private void 使用率ToolStripMenuItem_Click(object sender, EventArgs e)
     {
         CPUmonitor cPUmonitor = new CPUmonitor();
         cPUmonitor.Show();
+    }
+
+    private void 速度ToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        MessageBox.Show("开发中，敬请期待");
+    }
+
+    private void gPUToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        MessageBox.Show("开发中，敬请期待");
     }
 }

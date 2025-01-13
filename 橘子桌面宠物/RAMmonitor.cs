@@ -29,17 +29,17 @@ namespace 橘子桌面宠物
             IsBatteryEnabled = true,
         };
         bool isEditing = false;
-        public float GetCpuUsage()
+        public float GetRAMUsage()
         {
             foreach (IHardware hardware in computer.Hardware)
             {
-                if (hardware.HardwareType == HardwareType.Cpu)
+                if (hardware.HardwareType == HardwareType.Memory)
                 {
                     foreach (ISensor sensor in hardware.Sensors)
                     {
-                        if (sensor.SensorType == SensorType.Load && sensor.Name == "CPU Total")
+                        if (sensor.SensorType == SensorType.Load)
                         {
-                            return sensor.Value??0;
+                            return sensor.Value ?? 0;
                         }
                     }
                 }
@@ -58,7 +58,7 @@ namespace 橘子桌面宠物
             {
                 if (!isEditing)
                 {
-                    label1.Text = "CPU占用率：" + GetCpuUsage().ToString() + "%";
+                    label1.Text = "CPU占用率：" + GetRAMUsage().ToString() + "%";
                     computer.Reset();
                     await Task.Delay(1000);
                 }
@@ -107,5 +107,9 @@ namespace 橘子桌面宠物
             }
         }
 
+        private void 关闭ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           this.Hide();
+        }
     }
 }

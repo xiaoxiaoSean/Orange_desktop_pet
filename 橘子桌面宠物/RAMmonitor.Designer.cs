@@ -55,7 +55,7 @@
             this.cPU监视器橘子桌面宠物ToolStripMenuItem,
             this.关闭ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(250, 52);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(250, 80);
             // 
             // cPU监视器橘子桌面宠物ToolStripMenuItem
             // 
@@ -68,6 +68,7 @@
             this.关闭ToolStripMenuItem.Name = "关闭ToolStripMenuItem";
             this.关闭ToolStripMenuItem.Size = new System.Drawing.Size(249, 24);
             this.关闭ToolStripMenuItem.Text = "关闭";
+            this.关闭ToolStripMenuItem.Click += new System.EventHandler(this.关闭ToolStripMenuItem_Click);
             // 
             // RAMmonitor
             // 

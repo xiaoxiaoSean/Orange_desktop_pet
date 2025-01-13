@@ -11,9 +11,9 @@ using System.Windows.Forms;
 using LibreHardwareMonitor.Hardware;
 namespace 橘子桌面宠物
 {
-    public partial class CPUmonitor : Form
+    public partial class RAMmonitor : Form
     {
-        public CPUmonitor()
+        public RAMmonitor()
         {
             InitializeComponent();
         }
@@ -29,7 +29,7 @@ namespace 橘子桌面宠物
             IsBatteryEnabled = true,
         };
         bool isEditing = false;
-        public float GetCPUUsage()
+        public float GetCpuUsage()
         {
             foreach (IHardware hardware in computer.Hardware)
             {
@@ -46,7 +46,7 @@ namespace 橘子桌面宠物
             }
             return 0;
         }
-        private async void CPUmonitor_Load(object sender, EventArgs e)
+        private async void RAMmonitor_Load(object sender, EventArgs e)
         {
             this.TopMost= true;
             contextMenuStrip1.Visible = false;
@@ -58,7 +58,7 @@ namespace 橘子桌面宠物
             {
                 if (!isEditing)
                 {
-                    label1.Text = "CPU占用率：" + GetCPUUsage().ToString() + "%";
+                    label1.Text = "CPU占用率：" + GetCpuUsage().ToString() + "%";
                     computer.Reset();
                     await Task.Delay(1000);
                 }
@@ -75,7 +75,7 @@ namespace 橘子桌面宠物
 
         }
 
-        private void CPUmonitor_DoubleClick(object sender, EventArgs e)
+        private void RAMmonitor_DoubleClick(object sender, EventArgs e)
         {
             if (!isEditing)
             {
@@ -99,12 +99,13 @@ namespace 橘子桌面宠物
             }
         }
 
-        private void CPUmonitor_MouseClick(object sender, MouseEventArgs e)
+        private void RAMmonitor_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button is MouseButtons.Right)
             {
                 contextMenuStrip1.Show(this, Point.Empty);
             }
         }
+
     }
 }

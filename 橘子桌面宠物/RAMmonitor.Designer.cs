@@ -1,6 +1,6 @@
 ﻿namespace 橘子桌面宠物
 {
-    partial class CPUmonitor
+    partial class RAMmonitor
     {
         /// <summary>
         /// Required designer variable.
@@ -69,18 +69,18 @@
             this.关闭ToolStripMenuItem.Size = new System.Drawing.Size(249, 24);
             this.关闭ToolStripMenuItem.Text = "关闭";
             // 
-            // CPUmonitor
+            // RAMmonitor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(644, 323);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "CPUmonitor";
+            this.Name = "RAMmonitor";
             this.Text = "CPUmonitor";
-            this.Load += new System.EventHandler(this.CPUmonitor_Load);
-            this.DoubleClick += new System.EventHandler(this.CPUmonitor_DoubleClick);
-            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CPUmonitor_MouseClick);
+            this.Load += new System.EventHandler(this.RAMmonitor_Load);
+            this.DoubleClick += new System.EventHandler(this.RAMmonitor_DoubleClick);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.RAMmonitor_MouseClick);
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

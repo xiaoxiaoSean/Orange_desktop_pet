@@ -695,7 +695,8 @@ public Main()
 
     private void 随机存取存储器ToolStripMenuItem_Click(object sender, EventArgs e)
     {
-
+        RAMmonitor rAMmonitor = new RAMmonitor();
+        rAMmonitor.Show();
     }
 
     private void cPUToolStripMenuItem_Click(object sender, EventArgs e)

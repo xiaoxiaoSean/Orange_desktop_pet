@@ -106,5 +106,10 @@ namespace 橘子桌面宠物
                 contextMenuStrip1.Show(this, Point.Empty);
             }
         }
+
+        private void 关闭ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
     }
 }

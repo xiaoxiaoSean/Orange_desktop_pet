@@ -695,8 +695,7 @@ public Main()
 
     private void 随机存取存储器ToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        RAMmonitor rAMmonitor = new RAMmonitor();
-        rAMmonitor.Show();
+        MessageBox.Show("还有未解决的bug");
     }
 
     private void 使用率ToolStripMenuItem_Click(object sender, EventArgs e)

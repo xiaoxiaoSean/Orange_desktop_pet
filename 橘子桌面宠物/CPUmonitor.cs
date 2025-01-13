@@ -25,8 +25,7 @@ namespace 橘子桌面宠物
             IsMotherboardEnabled = true,
             IsControllerEnabled = true,
             IsNetworkEnabled = true,
-            IsStorageEnabled = true,
-            IsBatteryEnabled = true,
+            IsStorageEnabled = true
         };
         bool isEditing = false;
         public float GetCPUUsage()
@@ -75,18 +74,6 @@ namespace 橘子桌面宠物
 
         }
 
-        private void CPUmonitor_DoubleClick(object sender, EventArgs e)
-        {
-            if (!isEditing)
-            {
-                isEditing = true;
-            }
-            else
-            {
-                isEditing = false;
-            }
-        }
-
         private void label1_DoubleClick(object sender, EventArgs e)
         {
             if (!isEditing)
@@ -99,17 +86,17 @@ namespace 橘子桌面宠物
             }
         }
 
-        private void CPUmonitor_MouseClick(object sender, MouseEventArgs e)
+        private void 关闭ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
+
+        private void label1_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button is MouseButtons.Right)
             {
                 contextMenuStrip1.Show(this, Point.Empty);
             }
-        }
-
-        private void 关闭ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Hide();
         }
     }
 }

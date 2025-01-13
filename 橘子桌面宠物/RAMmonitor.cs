@@ -25,8 +25,7 @@ namespace 橘子桌面宠物
             IsMotherboardEnabled = true,
             IsControllerEnabled = true,
             IsNetworkEnabled = true,
-            IsStorageEnabled = true,
-            IsBatteryEnabled = true,
+            IsStorageEnabled = true
         };
         bool isEditing = false;
         public float GetRAMUsage()
@@ -51,14 +50,14 @@ namespace 橘子桌面宠物
             this.TopMost= true;
             contextMenuStrip1.Visible = false;
             this.ShowInTaskbar = false;
-            label1.Text = "CPU监视器正在准备中，请稍候";
+            label1.Text = "RAM监视器正在准备中，请稍候";
             computer.Open();
             this.Size = new Size(Screen.PrimaryScreen.Bounds.Width / 6, Screen.PrimaryScreen.Bounds.Height / 30);
             do
             {
                 if (!isEditing)
                 {
-                    label1.Text = "CPU占用率：" + GetRAMUsage().ToString() + "%";
+                    label1.Text = "RAM占用率：" + GetRAMUsage().ToString() + "%";
                     computer.Reset();
                     await Task.Delay(1000);
                 }

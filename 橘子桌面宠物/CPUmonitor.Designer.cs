@@ -47,6 +47,7 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "label1";
             this.label1.DoubleClick += new System.EventHandler(this.label1_DoubleClick);
+            this.label1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.label1_MouseClick);
             // 
             // contextMenuStrip1
             // 
@@ -55,7 +56,7 @@
             this.cPU监视器橘子桌面宠物ToolStripMenuItem,
             this.关闭ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(250, 80);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(250, 52);
             // 
             // cPU监视器橘子桌面宠物ToolStripMenuItem
             // 
@@ -80,8 +81,7 @@
             this.Name = "CPUmonitor";
             this.Text = "CPUmonitor";
             this.Load += new System.EventHandler(this.CPUmonitor_Load);
-            this.DoubleClick += new System.EventHandler(this.CPUmonitor_DoubleClick);
-            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CPUmonitor_MouseClick);
+            this.DoubleClick += new System.EventHandler(this.label1_DoubleClick);
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -30,6 +30,7 @@ public partial class Main : Form
     private int pictureStatus;
     private bool pleaseMoveMainLoad;
     private int power = 100;
+    private bool dontChangeLocation=false;
 public Main()
     {
         InitializeComponent();
@@ -74,7 +75,7 @@ public Main()
                 else
                 {
                     isThinking = false;
-                    if (!isOrigin)
+                    if (!isOrigin&&!dontChangeLocation)
                     {
                         MoveTo(new Point(Screen.PrimaryScreen.Bounds.Width - Size.Width, Screen.PrimaryScreen.Bounds.Height * 74 / 100));
                         isOrigin = true;
@@ -358,7 +359,7 @@ public Main()
 
     private async void Main_Load(object sender, EventArgs e)
     {
-        synthesizer.SetOutputToDefaultAudioDevice();
+        //synthesizer.SetOutputToDefaultAudioDevice();
         // SpeakVoice("我是Tom喵");
         contextMenuStrip1.Visible = false;
         TopMost = true;
@@ -469,7 +470,11 @@ public Main()
                 }
                 else
                 {
-                    await EditSize(new(Screen.PrimaryScreen.Bounds.Width / 7, Screen.PrimaryScreen.Bounds.Height / 7));
+                    if (!dontChangeLocation)
+                    {
+                        await EditSize(new(Screen.PrimaryScreen.Bounds.Width / 7, Screen.PrimaryScreen.Bounds.Height / 7));
+                    }
+                   
                 }
             }
 
@@ -622,6 +627,7 @@ public Main()
 
             TopMost = true;
         } while (true);
+        dontChangeLocation = false;
         showAskForm1.Hide();
         File.WriteAllText(Application.StartupPath + "\\data\\cache\\isAskFormShow.txt", "0");
     }
@@ -650,6 +656,7 @@ public Main()
         show1_show.Show();
         await Task.Delay(1000);
         pictureStatus = 0;
+        dontChangeLocation = true;
         await AutoSetLocation();
     }
 
@@ -712,5 +719,10 @@ public Main()
     private void gPUToolStripMenuItem_Click(object sender, EventArgs e)
     {
         MessageBox.Show("开发中，敬请期待");
+    }
+
+    private void mainPictureBox1_DragEnter(object sender, DragEventArgs e)
+    {
+
     }
 }

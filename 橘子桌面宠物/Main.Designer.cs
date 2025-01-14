@@ -55,19 +55,19 @@
             this.监视器ToolStripMenuItem,
             this.退出ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 128);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(169, 100);
             this.contextMenuStrip1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.contextMenuStrip1_MouseClick);
             // 
             // 橘子桌面宠物ToolStripMenuItem
             // 
             this.橘子桌面宠物ToolStripMenuItem.Name = "橘子桌面宠物ToolStripMenuItem";
-            this.橘子桌面宠物ToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.橘子桌面宠物ToolStripMenuItem.Size = new System.Drawing.Size(168, 24);
             this.橘子桌面宠物ToolStripMenuItem.Text = "橘子桌面宠物";
             // 
             // 设置ToolStripMenuItem
             // 
             this.设置ToolStripMenuItem.Name = "设置ToolStripMenuItem";
-            this.设置ToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.设置ToolStripMenuItem.Size = new System.Drawing.Size(168, 24);
             this.设置ToolStripMenuItem.Text = "设置";
             this.设置ToolStripMenuItem.Click += new System.EventHandler(this.设置ToolStripMenuItem_Click);
             // 
@@ -78,7 +78,7 @@
             this.随机存取存储器ToolStripMenuItem,
             this.gPUToolStripMenuItem});
             this.监视器ToolStripMenuItem.Name = "监视器ToolStripMenuItem";
-            this.监视器ToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.监视器ToolStripMenuItem.Size = new System.Drawing.Size(168, 24);
             this.监视器ToolStripMenuItem.Text = "监视器";
             // 
             // cPUToolStripMenuItem
@@ -93,14 +93,14 @@
             // 使用率ToolStripMenuItem
             // 
             this.使用率ToolStripMenuItem.Name = "使用率ToolStripMenuItem";
-            this.使用率ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.使用率ToolStripMenuItem.Size = new System.Drawing.Size(137, 26);
             this.使用率ToolStripMenuItem.Text = "使用率";
             this.使用率ToolStripMenuItem.Click += new System.EventHandler(this.使用率ToolStripMenuItem_Click);
             // 
             // 速度ToolStripMenuItem
             // 
             this.速度ToolStripMenuItem.Name = "速度ToolStripMenuItem";
-            this.速度ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.速度ToolStripMenuItem.Size = new System.Drawing.Size(137, 26);
             this.速度ToolStripMenuItem.Text = "速度";
             this.速度ToolStripMenuItem.Click += new System.EventHandler(this.速度ToolStripMenuItem_Click);
             // 
@@ -121,7 +121,7 @@
             // 退出ToolStripMenuItem
             // 
             this.退出ToolStripMenuItem.Name = "退出ToolStripMenuItem";
-            this.退出ToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.退出ToolStripMenuItem.Size = new System.Drawing.Size(168, 24);
             this.退出ToolStripMenuItem.Text = "退出";
             this.退出ToolStripMenuItem.Click += new System.EventHandler(this.退出ToolStripMenuItem_Click);
             // 
@@ -142,6 +142,7 @@
             this.mainPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.mainPictureBox1.TabIndex = 0;
             this.mainPictureBox1.TabStop = false;
+            this.mainPictureBox1.DragEnter += new System.Windows.Forms.DragEventHandler(this.mainPictureBox1_DragEnter);
             this.mainPictureBox1.DoubleClick += new System.EventHandler(this.mainPictureBox1_DoubleClick);
             this.mainPictureBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mainPictureBox1_MouseClick);
             // 
